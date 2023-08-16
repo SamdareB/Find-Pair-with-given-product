@@ -1,0 +1,67 @@
+#include <bits/stdc++.h>
+using namespace std;
+//Function to find the pair with given product 
+int findProductPair(int arr[], int n, int product){
+	for(int i = 0;i<n-1;i++)
+		for(int j =i+1;j<n;j++)
+			if(arr[i]*arr[j]==product)
+			return 1;
+			
+			return 0;
+	
+}
+int main() {
+	//your code goes here
+	int n, product;
+	std::cin>>n>>product;
+	int arr[n];
+	for(int i =0;i<n;i++){
+		std::cin>>arr[i];
+	}
+   std::cout<<findProductPair(arr, n, product);
+	return 0;
+}
+//Time complexity:O(n*n)
+//Space complexity:O(1)
+
+/*
+Below is optimised solution using sorting and two pointer Approach.
+int findProductPair(int arr[], int n, int product){
+	sort(arr, arr+n);
+	int l =0, r = n-1;
+	while(l<r){
+		int p = arr[l]*arr[r];
+		if(p ==product){
+		return 1;
+		}else if(p<product){
+			l++;
+		}
+		
+		else {
+			r--;
+		}
+	}
+	return 0;
+}
+//Time Complexity:O(nlogn)
+//Space omplexity:O(1)
+//Another optimise AApproach using hash set.
+int findProductPair(int arr[], int n, int product){
+        unordered_set<int>s;
+        for(int i =0;i<n;i++){
+        	if(arr[i]==0){
+        		if(product ==0)
+        		return 1;
+        		else
+        		continue;
+        	}
+        	if(product%arr[i]==0){
+        		s.find(x/arr[i])!= s.end())
+        		return 1;
+        		s.insert(arr[i])
+        	}
+        }
+        return 0;
+}
+//Time complexity:O(n)
+//Space Complexity:O(n)
